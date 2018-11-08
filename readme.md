@@ -6,7 +6,7 @@ Doel van de gastles: een docker setup die de studenten toelaat lokaal een larave
 
 ### Voor dat je begint...
 
-Zorg ervoor dat je Docker geinstalleerd hebt op je systeem. Dat kan je [hier](https://www.docker.com/get-started) doen... Is docker echt volledig nieuw?Check de website van [iamgoodbytes](https://github.com/iamgoodbytes) [dockerleren.be](https://www.dockerleren.be/) of [onze presentatie](https://studiohyperdrive.be) van de gastles. 
+Zorg ervoor dat je Docker geinstalleerd hebt op je systeem. Dat kan je [hier](https://www.docker.com/get-started) doen... Is docker echt volledig nieuw? Check de website van [iamgoodbytes](https://github.com/iamgoodbytes): [dockerleren.be](https://www.dockerleren.be/) of [onze presentatie](https://studiohyperdrive.be) van de gastles. 
 
 ### Hoe zijn we begonnen aan deze setup? 
 
@@ -20,9 +20,9 @@ $ docker run --rm -v $(pwd):/app composer/composer create-project --prefer-dist 
 
 Door composer in een Docker container te runnen met als image `composer`, hoeven we `composer` niet lokaal op ons systeem te installeren. 
 
-De `--rm` vlag zorgt ervoor dat de container na het uitvoeren direct opgeruimd wordt, zo blijven er geen onnodige containers op ons systeem achter. 
-`-v $(pwd):/app` gebruiken we om de huidige directory te mounten in de `app` folder van de Docker container en zorgt ervoor dat de changes in de Docker container zichtbaar zijn op onze lokale toestel. 
-`composer/composer create-project` is het composer commando voor het maken van een nieuw project
+- De `--rm` vlag zorgt ervoor dat de container na het uitvoeren direct opgeruimd wordt, zo blijven er geen onnodige containers op ons systeem achter.  
+- `-v $(pwd):/app` gebruiken we om de huidige directory te mounten in de `app` folder van de Docker container en zorgt ervoor dat de changes in de Docker container zichtbaar zijn op onze lokale toestel.  
+- `composer/composer create-project` is het composer commando voor het maken van een nieuw project  
 Met het laatste argument `laravel/laravel myproject` geven we aan dat we een laravel applicatie willen maken met myproject als naam. 
 
 Als alles goed gegaan is, staat er nu een nieuwe Laravel installatie klaar. 
@@ -31,7 +31,7 @@ Als alles goed gegaan is, staat er nu een nieuwe Laravel installatie klaar.
 
 Onze Laravel applicatie heeft drie onderdelen nodig om te kunnen werken: 
 1) Uiteraard PHP om de PHP code uit te voeren. 
-2) MySQL als database.
+2) Een database, bijvoorbeeld MySQL.
 3) En tenslotte hebben we gekozen voor nginx als webserver.
 
 Aangezien elke docker-container maar één verantwoordelijk mag hebben komen deze drie benodigdheden overeen met drie docker-containers die we gaan definiëren in onze docker-compose file. 
@@ -159,5 +159,5 @@ Nadien kan je ook nog steeds commando's gebruiken, bijvoorbeeld voor het maken v
 `docker-compose exec php php artisan make:controller MyController`
 
 ### Project starten en stoppen
-Start: `docker-compose up`
-Stop: `docker-compose stop`
+- Start: `docker-compose up`
+- Stop: `docker-compose stop`
