@@ -1,0 +1,37 @@
+version: '3'
+services:
+  php:
+    build:
+      context: ./
+      dockerfile: .docker/php.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=mysql"
+
+  nginx:
+    build:
+      context: ./
+      dockerfile: .docker/nginx.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - 8080:80
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=studiohyperdrive"
+      - "MYSQL_USER=studiohyperdrive"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_ROOT_PASSWORD=secret"
+    ports:
+        - "33061:3306"
+
+volumes:
+  dbdata:
