@@ -15,14 +15,15 @@ We hebben lokaal geen PHP of andere dependencies geinstalleerd behalve Docker, w
 We zijn gestart met een lege folder waarin we volgend commando uitgevoerd hebben:
 
 ```
-$ docker run --rm -v $(pwd):/app composer/composer create-project --prefer-dist laravel/laravel myproject
+$ docker run --rm -v $(pwd):/app composer:1.7 create-project --prefer-dist laravel/laravel myproject
 ```
 
-Door composer in een Docker container te runnen met als image `composer`, hoeven we `composer` niet lokaal op ons systeem te installeren. 
+Door composer in een Docker container te runnen met als image `composer:1.7`, hoeven we `composer` niet lokaal op ons systeem te installeren. 
 
 - De `--rm` vlag zorgt ervoor dat de container na het uitvoeren direct opgeruimd wordt, zo blijven er geen onnodige containers op ons systeem achter.  
 - `-v $(pwd):/app` gebruiken we om de huidige directory te mounten in de `app` folder van de Docker container en zorgt ervoor dat de changes in de Docker container zichtbaar zijn op onze lokale toestel.  
-- `composer/composer create-project` is het composer commando voor het maken van een nieuw project  
+- `composer:1.7` is de image die we gebruiken voor onze container
+- `create-project` is het composer commando voor het maken van een nieuw project  
 Met het laatste argument `laravel/laravel myproject` geven we aan dat we een laravel applicatie willen maken met myproject als naam. 
 
 Als alles goed gegaan is, staat er nu een nieuwe Laravel installatie klaar. 
