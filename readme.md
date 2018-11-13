@@ -120,8 +120,16 @@ We geven aan dat onze image moet starten vanaf de `nginx:1.10` image en dat we h
 
 Ten slotte maken we de `php.dockerfile` 
 ```
-# Use php 7!
-FROM php:7.2-fpm
+# Stage 1: Build with composer
+FROM composer:1.7 as builder
+
+WORKDIR /var/www
+COPY . ./
+
+RUN composer install
+
+# Stage 2: use php 7!
+FROM php:7.2-fpm as server
 
 # just the basics needed for a typical Laravel CRUD app 
 RUN apt-get update && apt-get install -y libmcrypt-dev \
@@ -129,8 +137,20 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
     && pecl install mcrypt-1.0.1 \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-install pdo_mysql
+
+# use build from stage 1
+COPY --from=builder /var/www /var/www
 ```
-We geven opnieuw aan dat we willen starten van specifieke image, deze keer vanaf `php:7.2-fpm`. Daarnaast installeren we ook een aantal PHP dependencies die Laravel zal nodig hebben. 
+
+Deze dockerfile ziet er iets anders uit dan de vorige aangezien we hier starten vanaf twee verschillende base-images. Dit noemen we een multi-stage Dockerfile.
+
+In de eerste stage kiezen we ervoor om te starten vanaf de `composer` stage en we geven deze stage de naam `builder`. Met het `WORKDIR /var/www` commando geven we aan in welke folder we willen werken (`/var/www`). En met het `COPY . ./` commando geven we aan dat we alle files van onze host (onze laravel app) willen kopiëren naar de workdir (`/var/www`). 
+
+Ten slotte starten we het `composer install` commando door `RUN composer install` toe te voegen aan de Dockerfile.
+
+In de tweede stage geven we opnieuw aan dat we willen starten vanaf specifieke image, deze keer vanaf `php:7.2-fpm`. Daarnaast installeren we ook een aantal PHP dependencies die Laravel zal nodig hebben. Met `COPY --from=builder /var/www /var/www` zeggen we dat we de `/var/www` uit de `builder container` willen kopiëren naar de huidige container zodat we alle files hebben die composer daarnet aangemaakt heeft. 
+
+De laatste stage van een multi-stage Dockerfile is het script / de software dat zal draaien in de uiteindelijke container. 
 
 Door nu `docker-compose up` uit te voeren, zullen alle containers opgestart worden. 
 
@@ -162,3 +182,8 @@ Nadien kan je ook nog steeds commando's gebruiken, bijvoorbeeld voor het maken v
 ### Project starten en stoppen
 - Start: `docker-compose up`
 - Stop: `docker-compose stop`
+
+### Laravel applicatie voor de eerste keer opstarten
+- Zorg ervoor dat je een `.env` file aanmaakt vanaf de `.env.example` file
+- Zorg ervoor dat `composer install` uitegevoerd is (normaal gezien doet het docker script dat)
+- Zorg ervoor dat eventuele seeds / migraties uitgevoerd worden (dit kan een post-deploy hook zijn in een CI tool)
