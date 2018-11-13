@@ -101,7 +101,7 @@ En als laatste voegen we ook MySQL toe aan onze services
 volumes:
   dbdata:
 ```
-In tegenstelling tot de andere twee services gaan we hier niet zelf een Docker file aanmaken maar maken we rechtsreeks gebruik van een de MySQL image die beschikbaar is via de Docker hub. We laten Docker ook weten dat we een specifiek volume voorzien voor onze database data zodat we de data niet telkens kwijt spelen als we onze Docker containers opnieuw op starten. 
+In tegenstelling tot de andere twee services gaan we hier niet zelf een Docker file aanmaken maar maken we rechtsreeks gebruik van een de MySQL image die beschikbaar is via de Docker hub. We laten Docker ook weten dat we een specifiek volume voorzien voor onze database data zodat we de data niet steeds verliezen als we onze Docker containers opnieuw op starten. 
 
 ### Aanmaken van de Dockerfile(s)
 
@@ -153,7 +153,7 @@ docker-compose exec php php artisan migrate --seed
 ```
 
 Het commando in detail: `php php artisan key:generate`
-`php` = de sercice naam
+`php` = de service naam
 `php artisan key:generate` het commando dat we willen uitvoeren in de service
  
 Nadien kan je ook nog steeds commando's gebruiken, bijvoorbeeld voor het maken van een nieuwe controller:
