@@ -18,3 +18,6 @@ RUN apt-get update && apt-get install -y libmcrypt-dev \
 
 # use build from stage 1
 COPY --from=builder /var/www /var/www
+
+# Set correct file permissions
+RUN chown -R www-data:www-data /var/www
