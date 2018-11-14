@@ -1,5 +1,7 @@
 ## Voorbeeld laravel project met docker setup
 
+> Bekijk de demo hier: http://imd-docker.studiohyperdrive.be/
+
 Op 16 november waren we te gast bij de opleiding [Interactieve multimedia design](https://weareimd.be/) van de Thomas More hogeschool in Mechelen voor een gastles Docker. 
 
 Doel van de gastles: een docker setup die de studenten toelaat lokaal een laravel applicatie te ontwikkelen m.b.v. Docker en hun applicatie op een server te deployen m.b.v. Docker.
