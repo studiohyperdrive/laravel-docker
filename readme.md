@@ -131,7 +131,7 @@ server {
 
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass php:server:9000;
+        fastcgi_pass php:9000;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -144,12 +144,12 @@ Bekijk zeker de documentatie van nginx even als je exact wilt weten wat hier geb
 ```
 location ~ \.php$ {
   ...
-  fastcgi_pass php:server:9000;
+  fastcgi_pass php:9000;
   ...
 }
 ```
 
-Hier zeggen we dat nginx alle .php bestanden moet laten uitvoeren door `php:server:9000`. Als we deze string ontleden komen we uit op: `php`, `server` en `9000`. `php` is de naam van de service die we in de compose file gebruikt hebben. `server` is de naam van de tweede stage in de `php.dockerfile` en `9000` is de poort waar de PHP service op draait. Docker-compose herkent deze benaming en weet op die manier de requests juist door te sturen naar de verschillende containers. 
+Hier zeggen we dat nginx alle .php bestanden moet laten uitvoeren door `php:9000`. Als we deze string ontleden komen we uit op: `php` en `9000`. `php` is de naam van de service die we in de compose file gebruikt hebben en `9000` is de poort waar de PHP service op draait. Docker-compose herkent deze benaming en weet op die manier de requests juist door te sturen naar de verschillende containers. 
 
 Ten slotte maken we de `php.dockerfile` 
 ```
