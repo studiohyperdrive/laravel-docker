@@ -105,6 +105,16 @@ volumes:
 ```
 In tegenstelling tot de andere twee services gaan we hier niet zelf een Docker file aanmaken maar maken we rechtsreeks gebruik van een de MySQL image die beschikbaar is via de Docker hub. We laten Docker ook weten dat we een specifiek volume voorzien voor onze database data zodat we de data niet steeds verliezen als we onze Docker containers opnieuw op starten. 
 
+### Productie: docker.compose.ci.yml
+
+Voor op onze servers (dev, acc, prod, ... omgevingen) maken we een `docker.compose.ci.yml` file aan. Deze docker-compose file zal bij ons intern gebruikt worden door de CI tool (bijvoorbeeld Circle CI, travis of bitbucket pipelines) voor het builden van de services en nadien voor het deployen en opstarten. `docker.compose.ci.yml` neemt standaard alle waarden over van de van `docker.compose.yml` we hoeven de configuratie voor de services dus niet opnieuw te herhalen behalve de zaken die we willen aanpassen. We laten nginx nu bijvoorbeeld doorverwijzen naar poort 80, ipv poort 8080 lokaal.
+
+Als je de setup wilt opstarten of stoppen a.d.h.v. deze setup, moet je docker starten met:
+```
+$ docker-compose -f docker-compose.ci.yml up
+$ docker-compose -f docker-compose.ci.yml stop
+```
+
 ### Aanmaken van de Dockerfile(s)
 
 We groeperen de Docker files in een mapje `.docker`. 
