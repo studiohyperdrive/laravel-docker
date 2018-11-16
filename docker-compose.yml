@@ -17,6 +17,8 @@ services:
       context: ./
       dockerfile: .docker/nginx.dockerfile
     working_dir: /var/www
+    depends_on:
+      - php
     volumes:
       - ./:/var/www
       - /var/www/vendor
