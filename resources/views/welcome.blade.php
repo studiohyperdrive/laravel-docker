@@ -73,6 +73,7 @@
 
                 <div class="links">
                     <a href="https://studiohyperdrive.be" target="_blank">Studio Hyperdrive</a>
+                    <a href="https://drive.google.com/file/d/1H_xhKCaeqQze9JM0fYDxv5MLniraF1M8/view?usp=sharing" target="_blank">Presentatie</a>
                     <a href="https://www.dockerleren.be" target="_blank">dockerleren.be</a>
                     <a href="https://docs.docker.com" target="_blank">Docker docs</a>
                     <a href="https://github.com/studiohyperdrive/laravel-docker" target="_blank">Github</a>

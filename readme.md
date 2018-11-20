@@ -8,7 +8,7 @@ Doel van de gastles: een docker setup die de studenten toelaat lokaal een larave
 
 ### Voor dat je begint...
 
-Zorg ervoor dat je Docker geinstalleerd hebt op je systeem. Dat kan je [hier](https://www.docker.com/get-started) doen... Is docker echt volledig nieuw? Check de website van [iamgoodbytes](https://github.com/iamgoodbytes): [dockerleren.be](https://www.dockerleren.be/) of [onze presentatie](https://studiohyperdrive.be) van de gastles. 
+Zorg ervoor dat je Docker geinstalleerd hebt op je systeem. Dat kan je [hier](https://www.docker.com/get-started) doen... Is docker echt volledig nieuw? Check de website van [iamgoodbytes](https://github.com/iamgoodbytes): [dockerleren.be](https://www.dockerleren.be/) of [onze presentatie](https://drive.google.com/file/d/1H_xhKCaeqQze9JM0fYDxv5MLniraF1M8/view?usp=sharing) van de gastles. 
 
 ### Hoe zijn we begonnen aan deze setup? 
 
